@@ -18,7 +18,6 @@
 """
 
 from abc import ABCMeta, abstractmethod
-#from get_square import Square_2
 
 
 class Figure(metaclass=ABCMeta):
@@ -29,16 +28,8 @@ class Figure(metaclass=ABCMeta):
     def func_perimeter(self):
         pass
 
-
-class Square(Figure):
-    def __init__(self, a):
-        self.a = a
-
-    def func_square(self):
-        return self.a * self.a
-
-    def func_perimeter(self):
-        return 4 * self.a
+    def func_circ_length(self):
+        pass
 
 
 class Rectangle(Figure):
@@ -61,10 +52,10 @@ class Triangle(Figure):
         self.p = (a + b + c) / 2
 
     def func_square(self):
-        return (self.p * (self.p - self.a) * (self.p - self.b) * (self.p - self.c)) ** 0.5
+        return '%.2f' % ((self.p * (self.p - self.a) * (self.p - self.b) * (self.p - self.c)) ** 0.5)
 
     def func_perimeter(self):
-        return self.a + self.b + self.c
+        return '%.2f' % (self.a + self.b + self.c)
 
 
 class Circle(Figure):
@@ -73,15 +64,16 @@ class Circle(Figure):
         self.pi = 3.14159
 
     def func_square(self):
-        return self.pi * self.r ** 2
+        return '%.2f' % (self.pi * self.r ** 2)
 
-    def func_perimeter(self):
-        return 2 * self.pi * self.r
+    def func_circ_length(self):
+        return '%.2f' % (2 * self.pi * self.r)
 
 
 if __name__ == "__main__":
-    sqr = Square(5)
+    sqr = Rectangle(5, 5)
     print(sqr.func_square())
+    print(sqr.func_perimeter())
     print(sqr.func_perimeter())
 
     rct = Rectangle(5, 6)
@@ -93,5 +85,6 @@ if __name__ == "__main__":
     print(trn.func_perimeter())
 
     crc = Circle(5)
-    print(trn.func_square())
-    print(trn.func_perimeter())
+    print(crc.func_square())
+    print(crc.func_circ_length())
+    print(crc.func_perimeter())
